@@ -3,51 +3,96 @@ import Image from 'next/image';
 
 export default function TimesheetHeader() {
   return (
-    <div className="relative mb-1">
-      {/* Grid layout for logo and title */}
-      <div className="grid grid-cols-[110px_1fr] gap-0 relative">
-        {/* Row 1: Logo | Title */}
-        <div className="row-span-3">
+    <div className="mb-0" style={{ fontStyle: 'normal' }}>
+      {/* 2-column layout: Logo | Content */}
+      <div style={{ display: 'flex', gap: '20px' }}>
+        {/* Logo */}
+        <div style={{ width: '95px', flexShrink: 0 }}>
           <Image
             src="/npclogo.jpeg"
             alt="NPC Logo"
-            width={90}
-            height={90}
-            className="block -ml-5 -mt-5"
+            width={160}
+            height={110}
+            style={{ display: 'block', marginTop: '-8px', marginLeft: '-12px' }}
             priority
           />
         </div>
 
-        <div className="flex justify-center items-start px-2.5">
-          <div className="border-2 border-timesheet-border bg-timesheet-bg py-1.5 px-5 text-[15px] font-bold w-full text-center">
+        {/* Right side: Title + center text + SITE USE boxes */}
+        <div style={{ flex: 1 }}>
+          {/* Title bar */}
+          <div
+            className="border-2 border-timesheet-border bg-timesheet-bg"
+            style={{
+              padding: '6px 20px',
+              fontSize: '15px',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              fontStyle: 'normal',
+            }}
+          >
             Labor Time Sheet
           </div>
-        </div>
 
-        {/* Row 2: Empty | Labor Working At Site */}
-        <div className="flex justify-center items-center mt-[3px]">
-          <div className="text-[11px]">Labor Working At Site</div>
-        </div>
-
-        {/* Row 3: Empty | LPO */}
-        <div className="flex justify-center items-center mt-[2px]">
-          <div className="text-[10px] font-bold">LPO</div>
-        </div>
-
-        {/* Site Use Boxes - Positioned absolutely on top right */}
-        <div className="absolute top-[60px] right-2.5">
-          <div className="flex gap-0">
-            <div className="border border-black py-1 px-2 text-[10px] font-bold text-center">
-              SITE USE
+          {/* Below title: center text on left, SITE USE on right */}
+          <div style={{ display: 'flex', marginTop: '6px' }}>
+            {/* Center text area */}
+            <div style={{ flex: 1, textAlign: 'right' }}>
+              <div style={{ fontSize: '12px', fontStyle: 'normal', fontWeight: 'normal', marginRight: '100px',marginTop:'11px', }}>
+                Labor Working At Site
+              </div>
+              <div style={{ fontSize: '12px', fontWeight: 'normal', fontStyle: 'normal', marginTop: '6px', marginRight: '70px' }}>
+                LPO
+              </div>
             </div>
-            <div className="border border-black border-l-0 py-1 px-[18px] text-[10px] font-bold text-center">
-              BOTH
-            </div>
+
+            {/* SITE USE boxes - normal flow, no absolute/spanning */}
+            <table
+              style={{
+                borderCollapse: 'collapse',
+                fontSize: '10px',
+                fontWeight: 'bold',
+                fontStyle: 'normal',
+                flexShrink: 0,
+                width: '180px',
+                marginTop:'17px',
+              }}
+            >
+              <tbody>
+                <tr>
+                  <td
+                    className="border border-black"
+                    style={{ padding: '3px 10px', textAlign: 'center' }}
+                  >
+                    SITE USE
+                  </td>
+                  <td
+                    className="border border-black"
+                    style={{ padding: '3px 18px', textAlign: 'center' }}
+                  >
+                    BOTH
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="border border-black"
+                    colSpan={2}
+                    style={{ padding: '3px 8px', textAlign: 'center', fontSize: '9px' }}
+                  >
+                    I069B/Contracts/MSA-001
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="border border-black"
+                    colSpan={2}
+                    style={{ height: '18px' }}
+                  >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div className="border border-black border-t-0 py-1 px-2 text-[9px] font-bold text-center">
-            I069B/Contracts/MSA-001
-          </div>
-          <div className="border border-black border-t-0 py-1 px-2 text-[9px] font-bold text-center h-[18px]"></div>
         </div>
       </div>
     </div>

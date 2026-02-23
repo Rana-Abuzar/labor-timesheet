@@ -47,7 +47,7 @@ export default function FooterSection({ totalWorked, totalOT, totalActual }: Foo
         </div>
       </div>
 
-      <div className="mt-1 text-xxs italic">
+      <div className="mt-1 text-xxs" style={{ fontStyle: 'normal' }}>
         <strong>Note:</strong> Vehicle using more than 01 hrs/day should mention the reason in the remarks column.
       </div>
     </>

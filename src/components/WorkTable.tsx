@@ -25,37 +25,37 @@ export default function WorkTable({
     <table className="w-full border-collapse mb-1">
       <thead>
         <tr>
-          <th className="border border-black p-0.5 text-center text-xxs w-[75px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[75px] bg-header-bg font-bold leading-tight align-middle">
             Date
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight align-middle">
             Time<br />In
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight align-middle">
             Time Out
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight align-middle">
             Lunch Break<br />Time 01:00 to<br />03:00
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight align-middle">
             Time<br />In
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight align-middle">
             Time<br />Out
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[50px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[50px] bg-header-bg font-bold leading-tight align-middle">
             Total Worked<br />Done(Hrs)
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[32px] bg-header-bg font-bold leading-tight align-middle">
             Over<br />Time
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[45px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[45px] bg-header-bg font-bold leading-tight align-middle">
             Actual<br />Worked<br />(Hrs)
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[48px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[48px] bg-header-bg font-bold leading-tight align-middle">
             Approver<br />Signature
           </th>
-          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight">
+          <th className="border border-black p-0.5 text-center text-xxs w-[42px] bg-header-bg font-bold leading-tight align-middle">
             Remarks
           </th>
         </tr>
@@ -72,87 +72,87 @@ export default function WorkTable({
 
           return (
             <tr key={entry.day} className={rowClass}>
-              <td className={`border border-black p-0.5 text-left pl-1 text-xs-plus whitespace-nowrap ${rowClass}`}>
-                {formatDate(year, month, entry.day)}
+              <td className={`border border-black p-0.5 text-left pl-1 text-xs-plus whitespace-nowrap align-middle ${rowClass}`}>
+                <span className="inline-block h-[16px] leading-[16px]">{formatDate(year, month, entry.day)}</span>
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.timeIn}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeIn', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.timeOutLunch}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeOutLunch', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`p-0.5 text-center text-xxs ${rowClass}`} style={{ border: 'none' }}>
+              <td className={`p-0.5 text-center text-xxs align-middle ${rowClass}`} style={{ border: 'none' }}>
                 <input
                   type="text"
                   value={entry.lunchBreak}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'lunchBreak', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.timeIn2}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeIn2', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.timeOut2}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeOut2', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="number"
                   value={entry.totalDuration || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'totalDuration', Number(e.target.value))}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="number"
                   value={entry.overTime || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'overTime', Number(e.target.value))}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="number"
                   value={entry.actualWorked || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'actualWorked', Number(e.target.value))}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.approverSig}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'approverSig', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs ${rowClass}`}>
+              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
                 <input
                   type="text"
                   value={entry.remarks}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'remarks', e.target.value)}
-                  className="w-full outline-none text-center text-xxs bg-transparent"
+                  className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
             </tr>
@@ -161,17 +161,14 @@ export default function WorkTable({
       </tbody>
       <tfoot>
         <tr>
-          <td colSpan={6} className="border border-black p-0.5 text-right pr-2 text-xs-plus font-bold">
-            TOTAL WORKED HOURS
-          </td>
-          <td className="border border-black p-0.5 text-center text-xs-plus font-bold">
-            {totalWorked || 0}
+          <td colSpan={7} className="border border-black p-0.5 text-right pr-2 text-xs-plus font-bold">
+            TOTAL WORKED HOURS = {(totalWorked + totalOT) || 0}
           </td>
           <td className="border border-black p-0.5 text-center text-xs-plus font-bold">
             {totalOT || 0}
           </td>
           <td className="border border-black p-0.5 text-center text-xs-plus font-bold">
-            {totalActual || 0}
+            {totalWorked || 0}
           </td>
           <td className="border border-black p-0.5"></td>
           <td className="border border-black p-0.5"></td>

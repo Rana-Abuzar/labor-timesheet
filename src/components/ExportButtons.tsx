@@ -31,18 +31,11 @@ export default function ExportButtons({
 }: ExportButtonsProps) {
   const [isExporting, setIsExporting] = useState(false);
 
-  const handlePDFExport = async () => {
-    if (!timesheetRef.current || isExporting) return;
-
-    setIsExporting(true);
-    try {
-      const monthName = MONTH_NAMES[month];
-      await exportToPDF(timesheetRef.current, laborName, monthName, year);
-    } catch (error) {
-      alert('Failed to export PDF. Please try again.');
-    } finally {
-      setIsExporting(false);
-    }
+  const handlePDFExport = () => {
+    if (isExporting) return;
+    // Use browser's native print-to-PDF for perfect rendering
+    // (vertical alignment, colors, full width all work correctly)
+    window.print();
   };
 
   const handleExcelExport = () => {
@@ -65,13 +58,13 @@ export default function ExportButtons({
 
   return (
     <div className="text-center mb-4 print:hidden">
-      <button
+      {/* <button
         onClick={handlePDFExport}
         disabled={isExporting}
         className="px-6 py-2.5 mx-2.5 text-sm font-bold border-none rounded-md cursor-pointer bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isExporting ? 'Exporting...' : 'Save as PDF'}
-      </button>
+      </button> */}
       <button
         onClick={handleExcelExport}
         disabled={isExporting}

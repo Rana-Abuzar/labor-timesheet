@@ -20,6 +20,35 @@ export function useTimesheet(): UseTimesheetReturn {
     setWorkData(days);
   }, [month, year]);
 
+  // Parse time string "HH:MM" to hours as a decimal number
+  const parseTimeToHours = (time: string): number | null => {
+    if (!time || !time.includes(':')) return null;
+    const [h, m] = time.split(':').map(Number);
+    if (isNaN(h) || isNaN(m)) return null;
+    return h + m / 60;
+  };
+
+  // Calculate total worked hours from time in/out fields
+  const calcTotalWorked = (entry: DayEntry): number => {
+    let total = 0;
+
+    const t1In = parseTimeToHours(entry.timeIn);
+    let t1Out = parseTimeToHours(entry.timeOutLunch);
+    if (t1In !== null && t1Out !== null) {
+      if (t1Out <= t1In) t1Out += 12; // AM to PM crossing (e.g. 5:00 to 1:00 = 8hrs)
+      total += t1Out - t1In;
+    }
+
+    const t2In = parseTimeToHours(entry.timeIn2);
+    let t2Out = parseTimeToHours(entry.timeOut2);
+    if (t2In !== null && t2Out !== null) {
+      if (t2Out <= t2In) t2Out += 12;
+      total += t2Out - t2In;
+    }
+
+    return Math.round(total * 100) / 100;
+  };
+
   // Update a specific day entry field
   const updateDayEntry = (day: number, field: keyof DayEntry, value: string | number) => {
     setWorkData((prev) => {
@@ -27,11 +56,10 @@ export function useTimesheet(): UseTimesheetReturn {
         if (entry.day === day) {
           const newEntry = { ...entry, [field]: value };
 
-          // Auto-calculate actualWorked if totalDuration or overTime changes
-          if (field === 'totalDuration' || field === 'overTime') {
-            const duration = field === 'totalDuration' ? Number(value) : newEntry.totalDuration;
-            const ot = field === 'overTime' ? Number(value) : newEntry.overTime;
-            newEntry.actualWorked = duration > 0 ? duration + ot : 0;
+          // Auto-calculate totalDuration when any time field changes
+          if (field === 'timeIn' || field === 'timeOutLunch' || field === 'timeIn2' || field === 'timeOut2') {
+            newEntry.totalDuration = calcTotalWorked(newEntry);
+            newEntry.actualWorked = newEntry.totalDuration;
           }
 
           return newEntry;
@@ -46,12 +74,11 @@ export function useTimesheet(): UseTimesheetReturn {
   const { totalWorked, totalOT, totalActual } = useMemo(() => {
     const worked = workData.reduce((sum, entry) => sum + (entry.totalDuration || 0), 0);
     const ot = workData.reduce((sum, entry) => sum + (entry.overTime || 0), 0);
-    const actual = workData.reduce((sum, entry) => sum + (entry.actualWorked || 0), 0);
 
     return {
       totalWorked: worked,
       totalOT: ot,
-      totalActual: actual,
+      totalActual: worked + ot,
     };
   }, [workData]);
 

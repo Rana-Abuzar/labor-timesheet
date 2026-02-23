@@ -34,101 +34,148 @@ export default function InfoTable({
   onSiteEngineerNameChange,
   onDesignationChange,
 }: InfoTableProps) {
+  const cellNoTop = 'border border-black border-t-0 p-1 text-sm-minus';
+
   return (
     <>
-      <div className="text-[12px] font-bold mb-1">ALMYAR UNITED TRADING LLC</div>
+      <div className="mb-1" style={{ display: 'flex', gap: '6px' }}>
+        {/* Left column: ALMYAR text + 4-row label/value table, pulled up */}
+        <div style={{ flex: 1, marginTop: '-32px' }}>
+          <div className="text-[12px] font-bold mb-1" style={{ marginLeft: '20px' }}>ALMYAR UNITED TRADING LLC</div>
+          <table
+            style={{ width: '100%', borderCollapse: 'separate', borderSpacing: '6px 0px' }}
+          >
+          <colgroup>
+            <col style={{ width: '40%' }} />
+            <col style={{ width: '60%' }} />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td className="border border-black p-1 text-sm-minus font-bold">
+                PROJECT NAME:
+              </td>
+              <td className="border border-black p-1 text-sm-minus">
+                <textarea
+                  value={projectName}
+                  onChange={(e) => onProjectNameChange(e.target.value)}
+                  rows={2}
+                  className="w-full outline-none bg-transparent text-sm-minus font-bold resize-none leading-tight"
+                  style={{ overflow: 'hidden' }}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className={`${cellNoTop} font-bold`}>
+                SUPPLIER NAME
+              </td>
+              <td className={cellNoTop}>
+                <input
+                  type="text"
+                  value={supplierName}
+                  onChange={(e) => onSupplierNameChange(e.target.value)}
+                  className="w-full outline-none bg-transparent text-sm-minus font-bold"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className={`${cellNoTop} font-bold`}>
+                Labor Name
+              </td>
+              <td className={cellNoTop}>
+                <input
+                  type="text"
+                  value={laborName}
+                  onChange={(e) => onLaborNameChange(e.target.value)}
+                  className="w-full outline-none bg-transparent text-sm-minus font-bold"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className={`${cellNoTop} font-bold`}>
+                Designation
+              </td>
+              <td className={cellNoTop}>
+                <input
+                  type="text"
+                  value={designation}
+                  onChange={(e) => onDesignationChange(e.target.value)}
+                  className="w-full outline-none bg-transparent text-sm-minus font-bold"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
 
-      <table className="w-full mb-1" style={{ borderCollapse: 'separate', borderSpacing: '20px' }}>
-        <tbody>
-          {/* Project Name Row */}
-          <tr>
-            <td className="border border-black p-1 text-sm-minus w-[110px] font-bold">
-              PROJECT NAME:
-            </td>
-            <td className="border border-black p-1 text-sm-minus" colSpan={2}>
-              <input
-                type="text"
-                value={projectName}
-                onChange={(e) => onProjectNameChange(e.target.value)}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold"
-              />
-            </td>
-            <td className="border border-black p-1 text-sm-minus w-[180px]">
-              <div className="font-bold text-sm-minus mb-0.5">Site Engineer/Forman Name</div>
-              <input
-                type="text"
-                value={siteEngineerName}
-                onChange={(e) => onSiteEngineerNameChange(e.target.value)}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold"
-              />
-            </td>
-          </tr>
+        {/* Right column: two groups with 20px gap */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
+          {/* Group 1: Site Engineer/Forman Name as text + two bordered cells */}
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <colgroup>
+              <col style={{ width: '50%' }} />
+              <col style={{ width: '25%' }} />
+              <col style={{ width: '25%' }} />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td className="p-1 font-bold" style={{ border: 'none', fontSize: '11px' }}>
+                  Site Engineer/Forman Name
+                </td>
+                <td className="border border-black p-1 text-sm-minus">
+                  <input
+                    type="text"
+                    value={siteEngineerName}
+                    onChange={(e) => onSiteEngineerNameChange(e.target.value)}
+                    className="w-full outline-none bg-transparent text-sm-minus font-bold"
+                  />
+                </td>
+                <td className="border border-black p-1 text-sm-minus">
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          {/* Supplier Name Row */}
-          <tr>
-            <td className="border border-black p-1 text-sm-minus font-bold">SUPPLIER NAME</td>
-            <td className="border border-black p-1 text-sm-minus" colSpan={3}>
-              <input
-                type="text"
-                value={supplierName}
-                onChange={(e) => onSupplierNameChange(e.target.value)}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold"
-              />
-            </td>
-          </tr>
-
-          {/* Labor Name, Month, Year Row */}
-          <tr>
-            <td className="border border-black p-1 text-sm-minus font-bold">Labor Name</td>
-            <td className="border border-black p-1 text-sm-minus">
-              <input
-                type="text"
-                value={laborName}
-                onChange={(e) => onLaborNameChange(e.target.value)}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold"
-              />
-            </td>
-            <td className="border border-black p-1 text-sm-minus w-[90px] text-center">
-              <div className="text-xs-plus font-bold text-center mb-0.5">Month</div>
-              <select
-                value={month}
-                onChange={(e) => onMonthChange(Number(e.target.value))}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold text-center"
-              >
-                {MONTH_NAMES.map((name, index) => (
-                  <option key={index} value={index}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td className="border border-black p-1 text-sm-minus w-[90px] text-center">
-              <div className="text-xs-plus font-bold text-center mb-0.5">Year:</div>
-              <input
-                type="number"
-                value={year}
-                onChange={(e) => onYearChange(Number(e.target.value))}
-                min="2020"
-                max="2040"
-                className="w-full outline-none bg-transparent text-sm-minus font-bold text-center"
-              />
-            </td>
-          </tr>
-
-          {/* Designation Row */}
-          <tr>
-            <td className="border border-black p-1 text-sm-minus font-bold">Designation</td>
-            <td className="border border-black p-1 text-sm-minus" colSpan={3}>
-              <input
-                type="text"
-                value={designation}
-                onChange={(e) => onDesignationChange(e.target.value)}
-                className="w-full outline-none bg-transparent text-sm-minus font-bold"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          {/* Group 2: Month / Year */}
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <colgroup>
+              <col style={{ width: '50%' }} />
+              <col style={{ width: '25%' }} />
+              <col style={{ width: '25%' }} />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td className="p-1 font-bold text-center" style={{ border: 'none', fontSize: '11px' }}>
+                  Month
+                </td>
+                <td className="border border-black p-1 text-sm-minus text-center font-bold">
+                  <select
+                    value={month}
+                    onChange={(e) => onMonthChange(Number(e.target.value))}
+                    className="w-full outline-none bg-transparent text-sm-minus font-bold text-center"
+                  >
+                    {MONTH_NAMES.map((name, index) => (
+                      <option key={index} value={index}>
+                        {name}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="border border-black p-1 text-sm-minus text-center font-bold">
+                  <span className="text-xs-plus">Year-</span>
+                  <input
+                    type="number"
+                    value={year}
+                    onChange={(e) => onYearChange(Number(e.target.value))}
+                    min="2020"
+                    max="2040"
+                    className="w-[35px] outline-none bg-transparent text-sm-minus font-bold text-center inline"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 }
