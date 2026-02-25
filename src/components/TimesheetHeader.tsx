@@ -13,7 +13,7 @@ export default function TimesheetHeader() {
             alt="NPC Logo"
             width={160}
             height={110}
-            style={{ display: 'block', marginTop: '-8px', marginLeft: '-12px' }}
+            style={{ display: 'block', marginTop: '-5px', marginLeft: '-1px' }}
             priority
           />
         </div>
@@ -25,7 +25,7 @@ export default function TimesheetHeader() {
             className="border-2 border-timesheet-border bg-timesheet-bg"
             style={{
               padding: '6px 20px',
-              fontSize: '15px',
+              fontSize: '17px',
               fontWeight: 'bold',
               textAlign: 'center',
               fontStyle: 'normal',
@@ -38,10 +38,10 @@ export default function TimesheetHeader() {
           <div style={{ display: 'flex', marginTop: '6px' }}>
             {/* Center text area */}
             <div style={{ flex: 1, textAlign: 'right' }}>
-              <div style={{ fontSize: '12px', fontStyle: 'normal', fontWeight: 'normal', marginRight: '100px',marginTop:'11px', }}>
+              <div style={{ fontSize: '14px', fontStyle: 'normal', fontWeight: 'normal', marginRight: '100px',marginTop:'11px', }}>
                 Labor Working At Site
               </div>
-              <div style={{ fontSize: '12px', fontWeight: 'normal', fontStyle: 'normal', marginTop: '6px', marginRight: '70px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 'normal', fontStyle: 'normal', marginTop: '6px', marginRight: '70px' }}>
                 LPO
               </div>
             </div>
@@ -50,8 +50,8 @@ export default function TimesheetHeader() {
             <table
               style={{
                 borderCollapse: 'collapse',
-                fontSize: '10px',
-                fontWeight: 'bold',
+                fontSize: '12px',
+                fontWeight: 'normal',
                 fontStyle: 'normal',
                 flexShrink: 0,
                 width: '180px',
@@ -77,7 +77,7 @@ export default function TimesheetHeader() {
                   <td
                     className="border border-black"
                     colSpan={2}
-                    style={{ padding: '3px 8px', textAlign: 'center', fontSize: '9px' }}
+                    style={{ padding: '3px 8px', textAlign: 'center', fontSize: '11px', fontWeight: 'bold' }}
                   >
                     I069B/Contracts/MSA-001
                   </td>

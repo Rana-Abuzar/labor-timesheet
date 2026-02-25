@@ -51,7 +51,7 @@ export default function InfoTable({
           </colgroup>
           <tbody>
             <tr>
-              <td className="border border-black p-1 text-sm-minus font-bold">
+              <td className="border border-black p-1 text-[10px]">
                 PROJECT NAME:
               </td>
               <td className="border border-black p-1 text-sm-minus">
@@ -65,7 +65,7 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className={`${cellNoTop} font-bold`}>
+              <td className="border border-black border-t-0 p-1 text-[10px]">
                 SUPPLIER NAME
               </td>
               <td className={cellNoTop}>
@@ -78,7 +78,7 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className={`${cellNoTop} font-bold`}>
+              <td className="border border-black border-t-0 p-1 text-[10px]">
                 Labor Name
               </td>
               <td className={cellNoTop}>
@@ -91,10 +91,10 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className={`${cellNoTop} font-bold`}>
+              <td className="border border-black border-t-0 border-b-0 p-1 text-[10px]">
                 Designation
               </td>
-              <td className={cellNoTop}>
+              <td className="border border-black border-t-0 border-b-0 p-1 text-sm-minus">
                 <input
                   type="text"
                   value={designation}
@@ -118,7 +118,7 @@ export default function InfoTable({
             </colgroup>
             <tbody>
               <tr>
-                <td className="p-1 font-bold" style={{ border: 'none', fontSize: '11px' }}>
+                <td className="p-1" style={{ border: 'none', fontSize: '13px' }}>
                   Site Engineer/Forman Name
                 </td>
                 <td className="border border-black p-1 text-sm-minus">
@@ -144,7 +144,7 @@ export default function InfoTable({
             </colgroup>
             <tbody>
               <tr>
-                <td className="p-1 font-bold text-center" style={{ border: 'none', fontSize: '11px' }}>
+                <td className="p-1 text-center" style={{ border: 'none', fontSize: '13px', paddingLeft: '100px' }}>
                   Month
                 </td>
                 <td className="border border-black p-1 text-sm-minus text-center font-bold">

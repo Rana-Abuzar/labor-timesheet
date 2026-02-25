@@ -13,7 +13,7 @@ export default function Home() {
   const timesheet = useTimesheet();
 
   return (
-    <main>
+    <main style={{ padding: '10px', background: 'white', minHeight: '100vh' }}>
       <ExportButtons
         timesheetRef={timesheetRef}
         laborName={timesheet.laborName}
@@ -28,7 +28,8 @@ export default function Home() {
 
       <div
         ref={timesheetRef}
-        className="w-a4 min-h-a4 mx-auto bg-white p-8 shadow-lg"
+        className="w-a4 min-h-a4 bg-white border border-black"
+        style={{ padding: '7px', margin: '10px auto' }}
       >
         <TimesheetHeader />
 

@@ -68,14 +68,13 @@ export default function WorkTable({
         </tr>
         {workData.map((entry) => {
           const isFridayRow = isFriday(year, month, entry.day);
-          const rowClass = isFridayRow ? 'bg-friday-highlight' : '';
 
           return (
-            <tr key={entry.day} className={rowClass}>
-              <td className={`border border-black p-0.5 text-left pl-1 text-xs-plus whitespace-nowrap align-middle ${rowClass}`}>
+            <tr key={entry.day}>
+              <td className={`border border-black p-0.5 text-left pl-1 text-xs-plus whitespace-nowrap align-middle ${isFridayRow ? 'bg-header-bg' : ''}`}>
                 <span className="inline-block h-[16px] leading-[16px]">{formatDate(year, month, entry.day)}</span>
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.timeIn}
@@ -83,7 +82,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.timeOutLunch}
@@ -91,7 +90,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`p-0.5 text-center text-xxs align-middle ${rowClass}`} style={{ border: 'none' }}>
+              <td className="p-0.5 text-center text-xxs align-middle" style={{ border: 'none' }}>
                 <input
                   type="text"
                   value={entry.lunchBreak}
@@ -99,7 +98,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.timeIn2}
@@ -107,7 +106,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.timeOut2}
@@ -115,7 +114,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="number"
                   value={entry.totalDuration || ''}
@@ -123,7 +122,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="number"
                   value={entry.overTime || ''}
@@ -131,7 +130,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="number"
                   value={entry.actualWorked || ''}
@@ -139,7 +138,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.approverSig}
@@ -147,7 +146,7 @@ export default function WorkTable({
                   className="w-full outline-none text-center text-xxs bg-transparent h-[16px] leading-[16px]"
                 />
               </td>
-              <td className={`border border-black p-0.5 text-center text-xxs align-middle ${rowClass}`}>
+              <td className="border border-black p-0.5 text-center text-xxs align-middle">
                 <input
                   type="text"
                   value={entry.remarks}

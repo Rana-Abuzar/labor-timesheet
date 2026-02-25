@@ -11,16 +11,17 @@ export function generateDaysInMonth(month: number, year: number): DayEntry[] {
   const days: DayEntry[] = [];
 
   for (let day = 1; day <= daysInMonth; day++) {
+    const friday = isFriday(year, month, day);
     days.push({
       day,
-      timeIn: '',
-      timeOutLunch: '',
+      timeIn: friday ? '' : '5:30',
+      timeOutLunch: friday ? '' : '01:30',
       lunchBreak: '',
-      timeIn2: '',
-      timeOut2: '',
-      totalDuration: 0,
+      timeIn2: friday ? '' : '3:30',
+      timeOut2: friday ? '' : '6:30',
+      totalDuration: friday ? 0 : 11,
       overTime: 0,
-      actualWorked: 0,
+      actualWorked: friday ? 0 : 11,
       approverSig: '',
       remarks: '',
     });
