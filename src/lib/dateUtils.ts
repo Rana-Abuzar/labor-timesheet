@@ -19,9 +19,9 @@ export function generateDaysInMonth(month: number, year: number): DayEntry[] {
       lunchBreak: '',
       timeIn2: friday ? '' : '3:30',
       timeOut2: friday ? '' : '6:30',
-      totalDuration: friday ? 0 : 11,
+      totalDuration: friday ? 0 : 10,
       overTime: 0,
-      actualWorked: friday ? 0 : 11,
+      actualWorked: friday ? 0 : 10,
       approverSig: '',
       remarks: '',
     });

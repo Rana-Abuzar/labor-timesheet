@@ -25,7 +25,7 @@ export default function TimesheetHeader() {
             className="border-2 border-timesheet-border bg-timesheet-bg"
             style={{
               padding: '6px 20px',
-              fontSize: '17px',
+              fontSize: '19px',
               fontWeight: 'bold',
               textAlign: 'center',
               fontStyle: 'normal',
@@ -38,10 +38,10 @@ export default function TimesheetHeader() {
           <div style={{ display: 'flex', marginTop: '6px' }}>
             {/* Center text area */}
             <div style={{ flex: 1, textAlign: 'right' }}>
-              <div style={{ fontSize: '14px', fontStyle: 'normal', fontWeight: 'normal', marginRight: '100px',marginTop:'11px', }}>
+              <div style={{ fontSize: '16px', fontStyle: 'normal', fontWeight: 'normal', marginRight: '100px',marginTop:'11px', }}>
                 Labor Working At Site
               </div>
-              <div style={{ fontSize: '14px', fontWeight: 'normal', fontStyle: 'normal', marginTop: '6px', marginRight: '70px' }}>
+              <div style={{ fontSize: '16px', fontWeight: 'normal', fontStyle: 'normal', marginTop: '6px', marginRight: '70px' }}>
                 LPO
               </div>
             </div>

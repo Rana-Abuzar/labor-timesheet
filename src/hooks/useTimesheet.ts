@@ -56,11 +56,7 @@ export function useTimesheet(): UseTimesheetReturn {
         if (entry.day === day) {
           const newEntry = { ...entry, [field]: value };
 
-          // Auto-calculate totalDuration when any time field changes
-          if (field === 'timeIn' || field === 'timeOutLunch' || field === 'timeIn2' || field === 'timeOut2') {
-            newEntry.totalDuration = calcTotalWorked(newEntry);
-            newEntry.actualWorked = newEntry.totalDuration;
-          }
+          // No auto-calculation; totalDuration and actualWorked are set manually
 
           return newEntry;
         }
