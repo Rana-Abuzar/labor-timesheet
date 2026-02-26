@@ -56,7 +56,6 @@ export default function Home() {
           workData={timesheet.workData}
           totalWorked={timesheet.totalWorked}
           totalOT={timesheet.totalOT}
-          totalActual={timesheet.totalActual}
           onUpdateDayEntry={timesheet.updateDayEntry}
         />
 

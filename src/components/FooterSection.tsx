@@ -20,7 +20,7 @@ export default function FooterSection({ totalWorked, totalOT, totalActual }: Foo
             <div className="w-[180px]">Labor Sign</div>
             <div className="ml-16">Date:</div>
           </div>
-          <div className="flex mb-[10px]">
+          <div className="flex mb-[10px]"> 
             <div className="w-[180px]">Foreman/Site Engineer</div>
             <div className="ml-16">Date:</div>
           </div>
