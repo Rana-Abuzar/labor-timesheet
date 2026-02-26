@@ -17,7 +17,7 @@ const config: Config = {
       fontSize: {
         'xxs': '7px',
         'xs-plus': '8px',
-        'sm-minus': '9px',
+        'sm-minus': '11px',
       },
       width: {
         'a4': '210mm',

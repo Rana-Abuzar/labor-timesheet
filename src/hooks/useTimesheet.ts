@@ -56,7 +56,8 @@ export function useTimesheet(): UseTimesheetReturn {
         if (entry.day === day) {
           const newEntry = { ...entry, [field]: value };
 
-          // No auto-calculation; totalDuration and actualWorked are set manually
+          // Auto-calculate actualWorked = totalDuration + overTime
+          newEntry.actualWorked = (newEntry.totalDuration || 0) + (newEntry.overTime || 0);
 
           return newEntry;
         }

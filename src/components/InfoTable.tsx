@@ -38,7 +38,7 @@ export default function InfoTable({
 
   return (
     <>
-      <div className="mb-1" style={{ display: 'flex', gap: '6px' }}>
+      <div className="mb-0" style={{ display: 'flex', gap: '6px' }}>
         {/* Left column: ALMYAR text + 4-row label/value table, pulled up */}
         <div style={{ flex: 1, marginTop: '-32px' }}>
           <div className="text-[12px] font-bold mb-1" style={{ marginLeft: '20px' }}>ALMYAR UNITED TRADING LLC</div>
@@ -51,7 +51,7 @@ export default function InfoTable({
           </colgroup>
           <tbody>
             <tr>
-              <td className="border border-black p-1 text-[10px]">
+              <td className="border border-black p-1 text-[12px]">
                 PROJECT NAME:
               </td>
               <td className="border border-black p-1 text-sm-minus">
@@ -65,7 +65,7 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className="border border-black border-t-0 p-1 text-[10px]">
+              <td className="border border-black border-t-0 p-1 text-[12px]">
                 SUPPLIER NAME
               </td>
               <td className={cellNoTop}>
@@ -78,7 +78,7 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className="border border-black border-t-0 p-1 text-[10px]">
+              <td className="border border-black border-t-0 p-1 text-[12px]">
                 Labor Name
               </td>
               <td className={cellNoTop}>
@@ -91,7 +91,7 @@ export default function InfoTable({
               </td>
             </tr>
             <tr>
-              <td className="border border-black border-t-0 border-b-0 p-1 text-[10px]">
+              <td className="border border-black border-t-0 border-b-0 p-1 text-[12px]">
                 Designation
               </td>
               <td className="border border-black border-t-0 border-b-0 p-1 text-sm-minus">
@@ -112,24 +112,24 @@ export default function InfoTable({
           {/* Group 1: Site Engineer/Forman Name as text + two bordered cells */}
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <colgroup>
-              <col style={{ width: '50%' }} />
-              <col style={{ width: '25%' }} />
-              <col style={{ width: '25%' }} />
+              <col />
+              <col style={{ width: '90px' }} />
+              <col style={{ width: '90px' }} />
             </colgroup>
             <tbody>
               <tr>
-                <td className="p-1" style={{ border: 'none', fontSize: '13px' }}>
+                <td className="p-1" style={{ border: 'none', fontSize: '13px', whiteSpace: 'nowrap' }}>
                   Site Engineer/Forman Name
                 </td>
-                <td className="border border-black p-1 text-sm-minus">
+                <td className="border border-black p-1 text-[11px]">
                   <input
                     type="text"
                     value={siteEngineerName}
                     onChange={(e) => onSiteEngineerNameChange(e.target.value)}
-                    className="w-full outline-none bg-transparent text-sm-minus font-bold"
+                    className="w-full outline-none bg-transparent text-[11px] font-bold"
                   />
                 </td>
-                <td className="border border-black p-1 text-sm-minus">
+                <td className="border border-black p-1 text-[11px]">
                 </td>
               </tr>
             </tbody>
@@ -138,20 +138,20 @@ export default function InfoTable({
           {/* Group 2: Month / Year */}
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <colgroup>
-              <col style={{ width: '50%' }} />
-              <col style={{ width: '25%' }} />
-              <col style={{ width: '25%' }} />
+              <col />
+              <col style={{ width: '90px' }} />
+              <col style={{ width: '90px' }} />
             </colgroup>
             <tbody>
               <tr>
-                <td className="p-1 text-center" style={{ border: 'none', fontSize: '13px', paddingLeft: '100px' }}>
+                <td className="p-1 text-center" style={{ border: 'none', fontSize: '15px', paddingLeft: '100px' }}>
                   Month
                 </td>
-                <td className="border border-black p-1 text-sm-minus text-center font-bold">
+                <td className="border border-black p-1 text-[11px] text-center font-bold">
                   <select
                     value={month}
                     onChange={(e) => onMonthChange(Number(e.target.value))}
-                    className="w-full outline-none bg-transparent text-sm-minus font-bold text-center"
+                    className="w-full outline-none bg-transparent text-[11px] font-bold text-center"
                   >
                     {MONTH_NAMES.map((name, index) => (
                       <option key={index} value={index}>
@@ -160,15 +160,15 @@ export default function InfoTable({
                     ))}
                   </select>
                 </td>
-                <td className="border border-black p-1 text-sm-minus text-center font-bold">
-                  <span className="text-xs-plus">Year-</span>
+                <td className="border border-black p-1 text-[11px] text-center font-bold">
+                  <span className="text-[11px]">Year-</span>
                   <input
                     type="number"
                     value={year}
                     onChange={(e) => onYearChange(Number(e.target.value))}
                     min="2020"
                     max="2040"
-                    className="w-[35px] outline-none bg-transparent text-sm-minus font-bold text-center inline"
+                    className="w-[35px] outline-none bg-transparent text-[11px] font-bold text-center inline"
                   />
                 </td>
               </tr>

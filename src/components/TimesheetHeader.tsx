@@ -56,6 +56,7 @@ export default function TimesheetHeader() {
                 flexShrink: 0,
                 width: '180px',
                 marginTop:'17px',
+                tableLayout: 'fixed',
               }}
             >
               <tbody>

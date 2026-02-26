@@ -9,22 +9,22 @@ interface FooterSectionProps {
 export default function FooterSection({ totalWorked, totalOT, totalActual }: FooterSectionProps) {
   return (
     <div style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
-      <div className="flex justify-between mt-2 text-sm">
+      <div className="flex justify-between mt-1 text-sm">
         {/* Signatures Section */}
         <div className="flex-1">
-          <div className="flex mb-[10px]">
+          <div className="flex mb-[8px]">
             <div className="w-[180px]">Store Keeper Sign</div>
             <div className="ml-16">Date:</div>
           </div>
-          <div className="flex mb-[10px]">
+          <div className="flex mb-[8px]">
             <div className="w-[180px]">Labor Sign</div>
             <div className="ml-16">Date:</div>
           </div>
-          <div className="flex mb-[10px]"> 
+          <div className="flex mb-[8px]">
             <div className="w-[180px]">Foreman/Site Engineer</div>
             <div className="ml-16">Date:</div>
           </div>
-          <div className="flex mb-[6px]">
+          <div className="flex mb-[4px]">
             <div className="w-[180px]"></div>
             <div style={{ marginLeft: '64px', whiteSpace: 'nowrap' }}>Project Manager Signature</div>
             <div style={{ marginLeft: '50px' }}>Date:</div>
