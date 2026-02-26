@@ -22,7 +22,7 @@ export default function TimesheetHeader() {
         <div style={{ flex: 1 }}>
           {/* Title bar */}
           <div
-            className="border-2 border-timesheet-border bg-timesheet-bg"
+            className="border border-black bg-timesheet-bg"
             style={{
               padding: '6px 20px',
               fontSize: '19px',

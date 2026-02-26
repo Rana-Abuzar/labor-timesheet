@@ -60,7 +60,7 @@ export default function WorkTable({
       </thead>
       <tbody>
         <tr>
-          <td colSpan={11} className="border border-black p-0.5 text-center text-[12px] bg-header-bg font-bold">
+          <td colSpan={11} className="border border-black p-0.5 text-center text-[12px] font-bold">
             WORK SHEET
           </td>
         </tr>
