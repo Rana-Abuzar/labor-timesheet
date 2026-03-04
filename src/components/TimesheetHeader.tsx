@@ -9,7 +9,7 @@ export default function TimesheetHeader() {
         <div style={{ width: '95px', flexShrink: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/npclogo.jpeg"
+            src="/npclogo.png"
             alt="NPC Logo"
             width={160}
             height={110}

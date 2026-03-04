@@ -45,7 +45,7 @@ export function Sidebar() {
     }}>
       {/* Branding */}
       <div className="flex items-center gap-3 px-4 py-5" style={{ borderBottom: '1px solid var(--border)' }}>
-        <Image src="/npclogo.jpeg" alt="NPC" width={32} height={32} className="rounded-md" />
+        <Image src="/npclogo.png" alt="NPC" width={32} height={32} className="rounded-md" />
         <div>
           <div className="text-sm font-bold" style={{ color: '#e8762b' }}>ALMYAR</div>
           <div className="text-xs" style={{ color: 'var(--text-muted)' }}>Project Platform</div>
