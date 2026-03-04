@@ -164,8 +164,8 @@ function TimesheetPageInner() {
       <div className="p-4">
         <div
           ref={timesheetRef}
-          className="w-a4 min-h-a4 bg-white border border-black mx-auto"
-          style={{ padding: '7px' }}
+          className="w-a4 min-h-a4 bg-white mx-auto"
+          style={{ border: '0.5px solid black', padding: '10px' }}
         >
           <TimesheetHeader />
           <InfoTable
