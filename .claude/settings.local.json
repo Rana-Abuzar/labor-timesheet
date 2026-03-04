@@ -13,7 +13,10 @@
       "Bash(winget install:*)",
       "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
       "Bash(git push:*)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "WebFetch(domain:claude.ai)",
+      "Bash(ls -t /c/Users/user/AppData/Local/Temp/*.png)",
+      "Bash(xargs -I{} bash -c 'echo \"\"$\\(stat -c \"\"%Y %n\"\" \"\"{}\"\"\\)\"\"')"
     ]
   }
 }

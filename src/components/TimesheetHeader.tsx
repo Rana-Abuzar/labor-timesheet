@@ -4,9 +4,9 @@ export default function TimesheetHeader() {
   return (
     <div className="mb-0" style={{ fontStyle: 'normal' }}>
       {/* 2-column layout: Logo | Content */}
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'stretch' }}>
+      <div style={{ display: 'flex', gap: '35px', alignItems: 'stretch' }}>
         {/* Logo */}
-        <div style={{ width: '72px', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+        <div style={{ width: '144px', flexShrink: 0, alignItems: 'center',marginTop:'20px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/npclogo.png"
