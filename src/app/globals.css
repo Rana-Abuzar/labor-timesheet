@@ -45,7 +45,7 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 5mm 8mm;
+    margin: 0;
   }
 
   * {
@@ -54,25 +54,38 @@ body {
     color-adjust: exact !important;
   }
 
-  body {
+  html, body {
     background: white !important;
     padding: 0;
+    margin: 0;
+    width: 210mm;
+    height: 297mm;
   }
 
-  /* Clear any dark/gray platform wrapper backgrounds */
-  body > *, main, main > *, main > * > * {
+  /* Force all platform wrapper elements to white, full width */
+  body > *, body > * > *, body > * > * > * {
     background: white !important;
   }
 
-  /* A4 sheet: fill the print content area, no decorative outer border */
+  /* main: must not clip content in print */
+  main {
+    overflow: visible !important;
+    height: auto !important;
+    background: white !important;
+  }
+
+  main > *, main > * > * {
+    background: white !important;
+  }
+
+  /* A4 sheet: full A4 page, no border (page edge is boundary), no margin */
   .w-a4 {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 210mm !important;
     border: none !important;
     margin: 0 !important;
   }
 
-  /* Padding div around A4 */
+  /* Remove padding from wrapper div around A4 */
   .p-4 {
     padding: 0 !important;
   }
