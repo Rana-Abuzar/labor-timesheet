@@ -151,7 +151,7 @@ export default function InfoTable({
                   <select
                     value={month}
                     onChange={(e) => onMonthChange(Number(e.target.value))}
-                    className="w-full outline-none bg-transparent text-[11px] font-bold text-center"
+                    className="w-full outline-none bg-transparent text-[11px] font-bold text-center appearance-none cursor-pointer"
                   >
                     {MONTH_NAMES.map((name, index) => (
                       <option key={index} value={index}>
