@@ -78,10 +78,9 @@ body {
     background: white !important;
   }
 
-  /* A4 sheet: full A4 page, no border (page edge is boundary), no margin */
+  /* A4 sheet: full A4 page, no margin */
   .w-a4 {
     width: 210mm !important;
-    border: none !important;
     margin: 0 !important;
   }
 
