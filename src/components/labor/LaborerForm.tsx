@@ -75,6 +75,27 @@ export function LaborerForm({ initial, onSubmit, submitLabel = 'Save' }: Props) 
         />
       </div>
 
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => set('is_active', !form.is_active)}
+          style={{
+            width: 40, height: 22, borderRadius: 11, border: 'none', cursor: 'pointer',
+            background: form.is_active ? '#16a34a' : 'var(--border)',
+            position: 'relative', transition: 'background 0.2s', flexShrink: 0,
+          }}
+        >
+          <span style={{
+            position: 'absolute', top: 3, left: form.is_active ? 21 : 3,
+            width: 16, height: 16, borderRadius: '50%', background: '#fff',
+            transition: 'left 0.2s',
+          }} />
+        </button>
+        <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          {form.is_active ? 'Active' : 'Inactive'}
+        </span>
+      </div>
+
       {error && <p className="text-sm" style={{ color: '#ef4444' }}>{error}</p>}
       <Button type="submit" loading={loading}>{submitLabel}</Button>
     </form>
