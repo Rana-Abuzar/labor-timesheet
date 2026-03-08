@@ -16,6 +16,8 @@ interface InfoTableProps {
   onSupplierNameChange: (name: string) => void;
   onSiteEngineerNameChange: (name: string) => void;
   onDesignationChange: (designation: string) => void;
+  laborNameLabel?: string;
+  designationLabel?: string;
 }
 
 export default function InfoTable({
@@ -33,6 +35,8 @@ export default function InfoTable({
   onSupplierNameChange,
   onSiteEngineerNameChange,
   onDesignationChange,
+  laborNameLabel = 'Labor Name',
+  designationLabel = 'Designation',
 }: InfoTableProps) {
   const cellNoTop = 'border border-black border-t-0 p-1 text-sm-minus';
 
@@ -79,7 +83,7 @@ export default function InfoTable({
             </tr>
             <tr>
               <td className="border border-black border-t-0 p-1 text-[12px]">
-                Labor Name
+                {laborNameLabel}
               </td>
               <td className={cellNoTop}>
                 <input
@@ -92,7 +96,7 @@ export default function InfoTable({
             </tr>
             <tr>
               <td className="border border-black border-t-0 border-b-0 p-1 text-[12px]">
-                Designation
+                {designationLabel}
               </td>
               <td className="border border-black border-t-0 border-b-0 p-1 text-sm-minus">
                 <input

@@ -14,7 +14,8 @@ const navItems = [
   { href: '/vendors', icon: <Truck size={19} />, label: 'Contractors' },
   { href: '/machines', icon: <Settings2 size={19} />, label: 'Vehicles' },
   { href: '/equipment', icon: <Wrench size={19} />, label: 'Equipment' },
-  { href: '/timesheet/history', icon: <ClipboardList size={19} />, label: 'Timesheets' },
+  { href: '/timesheet/history', icon: <ClipboardList size={19} />, label: 'Labor Timesheets' },
+  { href: '/vehicle-timesheet/history', icon: <ClipboardList size={19} />, label: 'Vehicle Timesheets' },
   { href: '/reports', icon: <FileBarChart size={19} />, label: 'Reports' },
 ];
 

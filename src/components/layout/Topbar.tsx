@@ -7,8 +7,10 @@ import { useSupabaseUser } from '@/hooks/useSupabaseUser';
 
 const titles: Record<string, string> = {
   '/dashboard': 'Dashboard',
-  '/timesheet': 'Timesheet',
-  '/timesheet/history': 'Timesheets',
+  '/timesheet': 'Labor Timesheet',
+  '/timesheet/history': 'Labor Timesheets',
+  '/vehicle-timesheet': 'Vehicle Timesheet',
+  '/vehicle-timesheet/history': 'Vehicle Timesheets',
   '/labor': 'Labour Registry',
   '/labor/new': 'Add Laborer',
   '/vendors': 'Contractors',
@@ -28,7 +30,8 @@ function getTitle(pathname: string): string {
   if (pathname.startsWith('/machines/') && pathname.endsWith('/edit')) return 'Edit Vehicle';
   if (pathname.startsWith('/machines/') && pathname.includes('/usage')) return 'Log Vehicle Usage';
   if (pathname.startsWith('/machines/')) return 'Vehicle Detail';
-  if (pathname.startsWith('/timesheet/history/')) return 'View Timesheet';
+  if (pathname.startsWith('/timesheet/history/')) return 'View Labor Timesheet';
+  if (pathname.startsWith('/vehicle-timesheet/history/')) return 'View Vehicle Timesheet';
   return 'Platform';
 }
 
