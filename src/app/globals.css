@@ -92,7 +92,7 @@ button, input, select, textarea {
 @media print {
   @page {
     size: A4;
-    margin: 5mm;
+    margin: 0;
   }
 
   * {
@@ -107,6 +107,7 @@ button, input, select, textarea {
     margin: 0;
     width: 210mm;
     height: 297mm;
+    overflow: hidden;
   }
 
   body > *, body > * > *, body > * > * > * {
@@ -124,8 +125,12 @@ button, input, select, textarea {
   }
 
   .w-a4 {
-    width: 210mm !important;
-    margin: 0 !important;
+    width: 205mm !important;
+    min-height: auto !important;
+    margin: 2mm 2.5mm 0 2.5mm !important;
+    transform: scaleY(0.95);
+    transform-origin: top left;
+    border: 1px solid black !important;
   }
 
   .p-4 {

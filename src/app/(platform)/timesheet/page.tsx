@@ -237,11 +237,11 @@ function TimesheetPageInner() {
       </div>
 
       {/* A4 Timesheet */}
-      <div className="p-4">
+      <div className="p-4" style={{ paddingBottom: 24 }}>
         <div
           ref={timesheetRef}
           className="w-a4 min-h-a4 bg-white mx-auto"
-          style={{ border: '0.5px solid black', padding: '10px' }}
+          style={{ border: '1px solid black', padding: '10px', overflow: 'visible', marginBottom: '2px' }}
         >
           <TimesheetHeader />
           <InfoTable
