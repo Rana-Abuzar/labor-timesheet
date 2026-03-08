@@ -13,6 +13,7 @@ type LoadMeta = {
 export function useTimesheet(): UseTimesheetReturn & {
   loadEntries: (entries: DayEntry[], meta: LoadMeta) => void;
   clearDayRange: (startDay: number, endDay: number) => void;
+  fillDayRange: (startDay: number, endDay: number) => void;
   setWorkData: React.Dispatch<React.SetStateAction<DayEntry[]>>;
 } {
   const [month, setMonth] = useState(1);
@@ -87,6 +88,22 @@ export function useTimesheet(): UseTimesheetReturn & {
     }));
   }, []);
 
+  // Fill entries with default values for a range of days
+  const fillDayRange = useCallback((startDay: number, endDay: number) => {
+    setWorkData(prev => prev.map(entry => {
+      if (entry.day >= startDay && entry.day <= endDay) {
+        return {
+          ...entry,
+          timeIn: '5:30', timeOutLunch: '01:30', lunchBreak: '',
+          timeIn2: '3:30', timeOut2: '6:30',
+          totalDuration: 10, overTime: 0, actualWorked: 10,
+          approverSig: '', remarks: '',
+        };
+      }
+      return entry;
+    }));
+  }, []);
+
   // Calculate totals
   const { totalWorked, totalOT, totalActual } = useMemo(() => {
     const worked = workData.reduce((sum, entry) => sum + (entry.totalDuration || 0), 0);
@@ -98,6 +115,6 @@ export function useTimesheet(): UseTimesheetReturn & {
     month, year, laborName, projectName, supplierName, siteEngineerName, designation,
     workData, totalWorked, totalOT, totalActual,
     setMonth, setYear, setLaborName, setProjectName, setSupplierName,
-    setSiteEngineerName, setDesignation, updateDayEntry, loadEntries, clearDayRange, setWorkData,
+    setSiteEngineerName, setDesignation, updateDayEntry, loadEntries, clearDayRange, fillDayRange, setWorkData,
   };
 }

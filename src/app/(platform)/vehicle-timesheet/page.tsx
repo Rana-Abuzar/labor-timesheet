@@ -11,7 +11,7 @@ import WorkTable from '@/components/WorkTable';
 import FooterSection from '@/components/FooterSection';
 import ExportButtons from '@/components/ExportButtons';
 import { Button } from '@/components/ui/Button';
-import { Save, Link as LinkIcon, Eraser } from 'lucide-react';
+import { Save, Link as LinkIcon, Eraser, Plus } from 'lucide-react';
 import type { DayEntry } from '@/types/timesheet';
 import { generateDaysInMonth } from '@/lib/dateUtils';
 
@@ -216,6 +216,18 @@ function VehicleTimesheetPageInner() {
             }}
           >
             <Eraser size={12} /> Clear
+          </button>
+          <button onClick={() => {
+            if (!confirm(`Fill default values for day ${clearStartDay} to ${clearEndDay}?`)) return;
+            timesheet.fillDayRange(clearStartDay, clearEndDay);
+          }}
+            className="flex items-center gap-1 text-xs font-semibold rounded-lg px-3 py-1.5"
+            style={{
+              background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.3)',
+              color: '#16a34a', cursor: 'pointer', whiteSpace: 'nowrap',
+            }}
+          >
+            <Plus size={12} /> Add
           </button>
         </div>
 
