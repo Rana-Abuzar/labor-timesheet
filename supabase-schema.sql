@@ -17,6 +17,10 @@ create table public.laborers (
   daily_rate    numeric(10,2),
   is_active     boolean not null default true,
   notes         text,
+  front_photo   text,
+  back_photo    text,
+  bank_name     text,
+  bank_account_number text,
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
@@ -49,6 +53,13 @@ create table public.machines (
                  check (status in ('available','in_use','maintenance','returned')),
   notes        text,
   is_active    boolean not null default true,
+  contact_person  text,
+  contact_number  text,
+  operator_name   text,
+  operator_id     text,
+  vehicle_photo   text,
+  vehicle_card    text,
+  operator_card   text,
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()
 );

@@ -9,6 +9,10 @@ export interface Laborer {
   daily_rate: number | null;
   is_active: boolean;
   notes: string | null;
+  front_photo: string | null;
+  back_photo: string | null;
+  bank_name: string | null;
+  bank_account_number: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -38,6 +42,13 @@ export interface Machine {
   status: 'available' | 'in_use' | 'maintenance' | 'returned';
   notes: string | null;
   is_active: boolean;
+  contact_person: string | null;
+  contact_number: string | null;
+  operator_name: string | null;
+  operator_id: string | null;
+  vehicle_photo: string | null;
+  vehicle_card: string | null;
+  operator_card: string | null;
   created_at: string;
   updated_at: string;
   vendor?: Vendor;

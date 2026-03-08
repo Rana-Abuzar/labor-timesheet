@@ -29,6 +29,8 @@ export default function LaborerDetailPage() {
     ['Phone', laborer.phone || '—'],
     ['Nationality', laborer.nationality || '—'],
     ['Status', laborer.is_active ? 'Active' : 'Left'],
+    ['Bank Name', laborer.bank_name || '—'],
+    ['Account No.', laborer.bank_account_number || '—'],
   ];
 
   return (
@@ -85,7 +87,7 @@ export default function LaborerDetailPage() {
         background: 'var(--bg-card)', borderRadius: 14,
         border: '1px solid var(--border)', padding: '24px',
       }}>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {info.map(([label, val]) => (
             <div key={label} style={{
               padding: '14px 18px', borderRadius: 10,
@@ -117,6 +119,41 @@ export default function LaborerDetailPage() {
         </div>
         {laborer.notes && <p className="text-sm mt-4" style={{ color: 'var(--text-secondary)' }}>{laborer.notes}</p>}
       </div>
+
+      {/* ID Photos */}
+      {(laborer.front_photo || laborer.back_photo) && (
+        <div style={{
+          background: 'var(--bg-card)', borderRadius: 14,
+          border: '1px solid var(--border)', padding: '24px',
+        }}>
+          <div style={{
+            fontSize: 14, fontWeight: 600, color: 'var(--text-primary)',
+            marginBottom: 16,
+          }}>
+            ID Photos
+          </div>
+          <div className="flex gap-6 flex-wrap">
+            {laborer.front_photo && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>Front</div>
+                <img src={laborer.front_photo} alt="Front Photo" style={{
+                  width: 200, height: 150, objectFit: 'cover', borderRadius: 10,
+                  border: '1px solid var(--border)',
+                }} />
+              </div>
+            )}
+            {laborer.back_photo && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>Back</div>
+                <img src={laborer.back_photo} alt="Back Photo" style={{
+                  width: 200, height: 150, objectFit: 'cover', borderRadius: 10,
+                  border: '1px solid var(--border)',
+                }} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Timesheets & History */}
       <div style={{

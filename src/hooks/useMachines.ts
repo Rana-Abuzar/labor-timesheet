@@ -36,6 +36,8 @@ export async function createMachine(data: Omit<Machine, 'id' | 'created_at' | 'u
 
 export async function updateMachine(id: string, data: Partial<Machine>) {
   const supabase = createClient();
-  const { error } = await supabase.from('machines').update(data).eq('id', id);
+  // Strip joined relations and read-only fields before sending to Supabase
+  const { vendor, id: _id, created_at, updated_at, ...columns } = data as any;
+  const { error } = await supabase.from('machines').update(columns).eq('id', id);
   return error;
 }

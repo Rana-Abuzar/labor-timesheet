@@ -36,16 +36,47 @@ export default function MachineDetailPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           ['Company', (machine.vendor as any)?.name ?? '—'],
-          ['Plate No.', machine.plate_number || '—'],
+          ['Contact Person', machine.contact_person || '—'],
+          ['Contact Number', machine.contact_number || '—'],
+          ['Vehicle Number', machine.plate_number || '—'],
+          ['Operator Name', machine.operator_name || '—'],
+          ['Operator ID', machine.operator_id || '—'],
           ['Daily Rate', machine.daily_rate ? `AED ${machine.daily_rate}` : '—'],
           ['Total Hours Logged', `${totalHours.toFixed(1)}h`],
         ].map(([label, val]) => (
           <div key={label} className="rounded-xl p-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-            <div className="text-xs mb-1" style={{ color: 'var(--text-muted)' }}>{label}</div>
-            <div className="text-base font-semibold text-[var(--text-primary)]">{val}</div>
+            <div className="text-xs mb-1" style={{ color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', fontSize: '10.5px', fontWeight: 600 }}>{label}</div>
+            <div className="text-sm font-semibold text-[var(--text-primary)]">{val}</div>
           </div>
         ))}
       </div>
+
+      {/* Photos & Cards */}
+      {(machine.vehicle_photo || machine.vehicle_card || machine.operator_card) && (
+        <div className="rounded-xl p-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+          <div className="text-sm font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Photos & Cards</div>
+          <div className="flex gap-6 flex-wrap">
+            {machine.vehicle_photo && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>Vehicle Photo</div>
+                <img src={machine.vehicle_photo} alt="Vehicle" style={{ width: 200, height: 150, objectFit: 'cover', borderRadius: 10, border: '1px solid var(--border)' }} />
+              </div>
+            )}
+            {machine.vehicle_card && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>Vehicle Card</div>
+                <img src={machine.vehicle_card} alt="Vehicle Card" style={{ width: 200, height: 150, objectFit: 'cover', borderRadius: 10, border: '1px solid var(--border)' }} />
+              </div>
+            )}
+            {machine.operator_card && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>Operator Card</div>
+                <img src={machine.operator_card} alt="Operator Card" style={{ width: 200, height: 150, objectFit: 'cover', borderRadius: 10, border: '1px solid var(--border)' }} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <Card>
         <div className="flex items-center justify-between mb-4">

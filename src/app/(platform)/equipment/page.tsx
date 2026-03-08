@@ -89,7 +89,7 @@ export default function EquipmentPage() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ background: 'var(--thead-bg)' }}>
-                {['Company', 'Equipment Type', 'Serial No', 'Phone', 'Site', 'Status', 'Actions'].map(h => (
+                {['Company', 'Equipment Type', 'Vehicle No', 'Operator', 'Contact', 'Status', 'Actions'].map(h => (
                   <th key={h} style={{
                     padding: '10px 13px', fontSize: '10.5px', fontWeight: 600,
                     color: 'var(--text-muted)', textAlign: 'left',
@@ -118,8 +118,8 @@ export default function EquipmentPage() {
                     >{m.name} {m.type ? `(${m.type})` : ''}</Link>
                   </td>
                   <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)', fontFamily: 'monospace' }}>{m.plate_number || '—'}</td>
-                  <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>—</td>
-                  <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>—</td>
+                  <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>{m.operator_name || '—'}</td>
+                  <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>{m.contact_person || '—'}</td>
                   <td style={{ padding: '10px 13px' }}>{machineStatusBadge(m.status)}</td>
                   <td style={{ padding: '10px 13px' }}>
                     <div className="flex items-center gap-1.5">
