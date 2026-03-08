@@ -26,6 +26,7 @@ function TimesheetPageInner() {
   const toast = useToast();
   const [clearStartDay, setClearStartDay] = useState(1);
   const [clearEndDay, setClearEndDay] = useState(1);
+  const [fillHours, setFillHours] = useState(10);
   const searchParams = useSearchParams();
   const { confirm, dialog: confirmDialog } = useConfirmDialog();
 
@@ -53,9 +54,9 @@ function TimesheetPageInner() {
         timesheet.loadEntries(entries, {
           month: ts.month,
           year: ts.year,
-          laborName: (ts as any).laborer?.full_name ?? ts.supplier_name ?? '',
+          laborName: (ts as any).laborer?.full_name ?? '',
           projectName: ts.project_name ?? '',
-          supplierName: ts.supplier_name ?? '',
+          supplierName: '',
           siteEngineerName: ts.site_engineer_name ?? '',
           designation: ts.designation ?? '',
         });
@@ -63,11 +64,11 @@ function TimesheetPageInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // When laborers load and ?laborer= param exists (no ts param), auto-fill laborer info
+  // When laborers load, update designation with fresh laborer data (for both ?laborer= and ?ts= paths)
   useEffect(() => {
-    const laborerId = searchParams.get('laborer');
-    const tsId = searchParams.get('ts');
-    if (!laborerId || !laborers.length || tsId) return;
+    if (!laborers.length) return;
+    const laborerId = searchParams.get('laborer') || selectedLaborerId;
+    if (!laborerId) return;
     const lab = laborers.find(l => l.id === laborerId);
     if (!lab) return;
     timesheet.setLaborName(lab.full_name);
@@ -101,9 +102,9 @@ function TimesheetPageInner() {
           year: existing.year,
           laborName: lab.full_name,
           projectName: existing.project_name ?? timesheet.projectName,
-          supplierName: existing.supplier_name ?? '',
+          supplierName: '',
           siteEngineerName: existing.site_engineer_name ?? '',
-          designation: existing.designation ?? `${lab.designation}# ${lab.id_number}`,
+          designation: `${lab.designation}# ${lab.id_number}`,
         });
       } else {
         // No existing timesheet — reset to default days and fill header
@@ -213,10 +214,16 @@ function TimesheetPageInner() {
           >
             <Eraser size={12} /> Clear
           </button>
+          <span className="text-xs" style={{ color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Hrs</span>
+          <input type="number" min={1} max={24} value={fillHours}
+            onChange={e => setFillHours(Number(e.target.value))}
+            className="text-sm rounded-lg px-2 py-1 outline-none text-center"
+            style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', border: '1px solid var(--border)', width: 52 }}
+          />
           <button onClick={async () => {
-            const ok = await confirm({ title: 'Fill Default Values', message: `Fill default values for day ${clearStartDay} to ${clearEndDay}?`, variant: 'info', confirmLabel: 'Fill' });
+            const ok = await confirm({ title: 'Fill Default Values', message: `Fill ${fillHours} hours for day ${clearStartDay} to ${clearEndDay}?`, variant: 'info', confirmLabel: 'Fill' });
             if (!ok) return;
-            timesheet.fillDayRange(clearStartDay, clearEndDay);
+            timesheet.fillDayRange(clearStartDay, clearEndDay, fillHours);
           }}
             className="flex items-center gap-1 text-xs font-semibold rounded-lg px-3 py-1.5"
             style={{

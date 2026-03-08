@@ -13,7 +13,7 @@ type LoadMeta = {
 export function useTimesheet(): UseTimesheetReturn & {
   loadEntries: (entries: DayEntry[], meta: LoadMeta) => void;
   clearDayRange: (startDay: number, endDay: number) => void;
-  fillDayRange: (startDay: number, endDay: number) => void;
+  fillDayRange: (startDay: number, endDay: number, hours?: number) => void;
   setWorkData: React.Dispatch<React.SetStateAction<DayEntry[]>>;
 } {
   const [month, setMonth] = useState(1);
@@ -89,14 +89,14 @@ export function useTimesheet(): UseTimesheetReturn & {
   }, []);
 
   // Fill entries with default values for a range of days
-  const fillDayRange = useCallback((startDay: number, endDay: number) => {
+  const fillDayRange = useCallback((startDay: number, endDay: number, hours: number = 10) => {
     setWorkData(prev => prev.map(entry => {
       if (entry.day >= startDay && entry.day <= endDay) {
         return {
           ...entry,
           timeIn: '5:30', timeOutLunch: '01:30', lunchBreak: '',
           timeIn2: '3:30', timeOut2: '6:30',
-          totalDuration: 10, overTime: 0, actualWorked: 10,
+          totalDuration: hours, overTime: 0, actualWorked: hours,
           approverSig: '', remarks: '',
         };
       }

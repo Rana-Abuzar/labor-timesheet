@@ -26,6 +26,7 @@ function VehicleTimesheetPageInner() {
   const toast = useToast();
   const [clearStartDay, setClearStartDay] = useState(1);
   const [clearEndDay, setClearEndDay] = useState(1);
+  const [fillHours, setFillHours] = useState(10);
   const searchParams = useSearchParams();
   const { confirm, dialog: confirmDialog } = useConfirmDialog();
 
@@ -213,10 +214,16 @@ function VehicleTimesheetPageInner() {
           >
             <Eraser size={12} /> Clear
           </button>
+          <span className="text-xs" style={{ color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Hrs</span>
+          <input type="number" min={1} max={24} value={fillHours}
+            onChange={e => setFillHours(Number(e.target.value))}
+            className="text-sm rounded-lg px-2 py-1 outline-none text-center"
+            style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', border: '1px solid var(--border)', width: 52 }}
+          />
           <button onClick={async () => {
-            const ok = await confirm({ title: 'Fill Default Values', message: `Fill default values for day ${clearStartDay} to ${clearEndDay}?`, variant: 'info', confirmLabel: 'Fill' });
+            const ok = await confirm({ title: 'Fill Default Values', message: `Fill ${fillHours} hours for day ${clearStartDay} to ${clearEndDay}?`, variant: 'info', confirmLabel: 'Fill' });
             if (!ok) return;
-            timesheet.fillDayRange(clearStartDay, clearEndDay);
+            timesheet.fillDayRange(clearStartDay, clearEndDay, fillHours);
           }}
             className="flex items-center gap-1 text-xs font-semibold rounded-lg px-3 py-1.5"
             style={{
