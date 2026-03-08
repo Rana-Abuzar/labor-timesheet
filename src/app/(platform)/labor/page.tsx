@@ -5,6 +5,7 @@ import { useLaborers, deactivateLaborer, reactivateLaborer } from '@/hooks/useLa
 import { PageSpinner } from '@/components/ui/Spinner';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
+import { useConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { Users, Plus, Search, Pencil, Trash2, RotateCcw } from 'lucide-react';
 
 const designations = ['All', 'Helper', 'Scaffolder', 'Electrician', 'Rigger', 'Steel Fixer'];
@@ -13,6 +14,7 @@ export default function LaborPage() {
   const { laborers, loading, refetch } = useLaborers(false);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('All');
+  const { confirm, dialog: confirmDialog } = useConfirmDialog();
 
   const filtered = laborers.filter(l => {
     const matchSearch = l.full_name.toLowerCase().includes(search.toLowerCase()) ||
@@ -147,7 +149,8 @@ export default function LaborPage() {
                         </Link>
                         {l.is_active ? (
                           <button onClick={async () => {
-                            if (!confirm(`Are you sure you want to deactivate "${l.full_name}"?`)) return;
+                            const ok = await confirm({ title: 'Deactivate Laborer', message: `Are you sure you want to deactivate "${l.full_name}"?`, variant: 'danger', confirmLabel: 'Deactivate' });
+                            if (!ok) return;
                             await deactivateLaborer(l.id); refetch();
                           }}
                             title="Deactivate" style={{
@@ -161,7 +164,8 @@ export default function LaborPage() {
                           </button>
                         ) : (
                           <button onClick={async () => {
-                            if (!confirm(`Re-activate "${l.full_name}"?`)) return;
+                            const ok = await confirm({ title: 'Re-activate Laborer', message: `Re-activate "${l.full_name}"?`, variant: 'info', confirmLabel: 'Re-activate' });
+                            if (!ok) return;
                             await reactivateLaborer(l.id); refetch();
                           }}
                             title="Re-activate" style={{
@@ -183,6 +187,7 @@ export default function LaborPage() {
           </table>
         </div>
       )}
+      {confirmDialog}
     </div>
   );
 }

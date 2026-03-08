@@ -159,22 +159,34 @@ export default function WorkTable({
         })}
       </tbody>
       <tfoot>
-        <tr>
-          <td colSpan={6} className="border border-black p-0.5 text-right pr-2 text-[12px] font-bold">
-            TOTAL WORKED HOURS =
-          </td>
-          <td className="border border-black p-0.5 text-center text-[12px] font-bold">
-            {totalWorked || 0}
-          </td>
-          <td className="border border-black p-0.5 text-center text-[12px] font-bold">
-            {vehicleMode ? '' : (totalOT || 0)}
-          </td>
-          <td className="border border-black p-0.5 text-center text-[12px] font-bold">
-            {vehicleMode ? '' : ((totalWorked + totalOT) || 0)}
-          </td>
-          <td className="border border-black p-0.5"></td>
-          <td className="border border-black p-0.5"></td>
-        </tr>
+        {vehicleMode ? (
+          <tr>
+            <td colSpan={6} className="border border-black p-0.5 text-right pr-2 text-[12px] font-bold">
+              TOTAL WORKED HOURS
+            </td>
+            <td className="border border-black p-0.5 text-center text-[12px] font-bold"></td>
+            <td className="border border-black p-0.5 text-center text-[12px] font-bold"></td>
+            <td className="border border-black p-0.5 text-center text-[12px] font-bold">
+              {totalWorked || 0}
+            </td>
+            <td className="border border-black p-0.5"></td>
+            <td className="border border-black p-0.5"></td>
+          </tr>
+        ) : (
+          <tr>
+            <td colSpan={7} className="border border-black p-0.5 text-right pr-2 text-[12px] font-bold">
+              TOTAL WORKED HOURS = {totalWorked || 0}
+            </td>
+            <td className="border border-black p-0.5 text-center text-[12px] font-bold">
+              {totalOT || 0}
+            </td>
+            <td className="border border-black p-0.5 text-center text-[12px] font-bold">
+              {(totalWorked + totalOT) || 0}
+            </td>
+            <td className="border border-black p-0.5"></td>
+            <td className="border border-black p-0.5"></td>
+          </tr>
+        )}
       </tfoot>
     </table>
   );

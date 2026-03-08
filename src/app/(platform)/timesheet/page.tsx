@@ -11,6 +11,7 @@ import WorkTable from '@/components/WorkTable';
 import FooterSection from '@/components/FooterSection';
 import ExportButtons from '@/components/ExportButtons';
 import { Button } from '@/components/ui/Button';
+import { useConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { Save, Link as LinkIcon, Eraser, Plus } from 'lucide-react';
 import type { DayEntry } from '@/types/timesheet';
 import { generateDaysInMonth } from '@/lib/dateUtils';
@@ -25,6 +26,7 @@ function TimesheetPageInner() {
   const [clearStartDay, setClearStartDay] = useState(1);
   const [clearEndDay, setClearEndDay] = useState(1);
   const searchParams = useSearchParams();
+  const { confirm, dialog: confirmDialog } = useConfirmDialog();
 
   // On mount: load existing timesheet if ?ts= param is present
   useEffect(() => {
@@ -207,8 +209,9 @@ function TimesheetPageInner() {
             className="text-sm rounded-lg px-2 py-1 outline-none text-center"
             style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', border: '1px solid var(--border)', width: 52 }}
           />
-          <button onClick={() => {
-            if (!confirm(`Clear all timesheet entries from day ${clearStartDay} to ${clearEndDay}?`)) return;
+          <button onClick={async () => {
+            const ok = await confirm({ title: 'Clear Entries', message: `Clear all timesheet entries from day ${clearStartDay} to ${clearEndDay}?`, variant: 'danger', confirmLabel: 'Clear' });
+            if (!ok) return;
             timesheet.clearDayRange(clearStartDay, clearEndDay);
           }}
             className="flex items-center gap-1 text-xs font-semibold rounded-lg px-3 py-1.5"
@@ -219,8 +222,9 @@ function TimesheetPageInner() {
           >
             <Eraser size={12} /> Clear
           </button>
-          <button onClick={() => {
-            if (!confirm(`Fill default values for day ${clearStartDay} to ${clearEndDay}?`)) return;
+          <button onClick={async () => {
+            const ok = await confirm({ title: 'Fill Default Values', message: `Fill default values for day ${clearStartDay} to ${clearEndDay}?`, variant: 'info', confirmLabel: 'Fill' });
+            if (!ok) return;
             timesheet.fillDayRange(clearStartDay, clearEndDay);
           }}
             className="flex items-center gap-1 text-xs font-semibold rounded-lg px-3 py-1.5"
@@ -279,6 +283,7 @@ function TimesheetPageInner() {
           />
         </div>
       </div>
+      {confirmDialog}
     </div>
   );
 }

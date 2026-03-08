@@ -15,9 +15,9 @@ export default function FooterSection({ totalWorked, totalOT, totalActual, vehic
 
   return (
     <div style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
-      <div className="flex justify-between mt-1 text-sm">
+      <div className="flex justify-between mt-1 text-sm" style={{ overflow: 'hidden' }}>
         {/* Signatures Section */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <div className="flex mb-[8px]">
             <div className="w-[180px]">Store Keeper Sign</div>
             <div className="ml-16">Date:</div>
@@ -38,18 +38,15 @@ export default function FooterSection({ totalWorked, totalOT, totalActual, vehic
         </div>
 
         {/* Summary Section */}
-        <div className="w-[320px] text-right">
-          <div className="flex justify-end mb-1 items-center">
-            <div className="mr-2">Minimum Worked Hours</div>
-            <div className="font-bold">= {minHours}</div>
+        <div className="text-right" style={{ whiteSpace: 'nowrap' }}>
+          <div className="mb-1">
+            Minimum Worked Hours <span className="font-bold">= {minHours}</span>
           </div>
-          <div className="flex justify-end mb-1 items-center">
-            <div style={{marginLeft:-20}} className="mr-2">Over Time (+Value)/Less Worked (-Value) =</div>
-            <div className="font-bold">{overTime !== 0 ? overTime : 'NIL'}</div>
+          <div className="mb-1">
+            Over Time (+Value)/Less Worked (-Value) = <span className="font-bold">{overTime !== 0 ? overTime : 'NIL'}</span>
           </div>
-          <div className="flex justify-end mb-1 items-center">
-            <div className="mr-2">TOTAL WORKED HOURS</div>
-            <div className="font-bold">= {actualHours}</div>
+          <div className="mb-1">
+            TOTAL WORKED HOURS <span className="font-bold">= {actualHours}</span>
           </div>
         </div>
       </div>
