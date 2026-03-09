@@ -16,8 +16,8 @@ export default function EquipmentTimesheetHistoryPage() {
   const [filter, setFilter] = useState<'All' | 'approved' | 'draft'>('All');
   const [monthFilter, setMonthFilter] = useState('All');
 
-  const machineIds = new Set(machines.map(m => m.id));
-  const equipmentTimesheets = timesheets.filter(ts => ts.laborer_id && machineIds.has(ts.laborer_id));
+  const equipmentMachineIds = new Set(machines.filter(m => m.category === 'equipment').map(m => m.id));
+  const equipmentTimesheets = timesheets.filter(ts => ts.laborer_id && equipmentMachineIds.has(ts.laborer_id));
 
   const monthOptions = Array.from(
     new Set(equipmentTimesheets.map(ts => `${MONTHS[ts.month]} ${ts.year}`))

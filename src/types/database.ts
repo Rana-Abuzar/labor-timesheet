@@ -34,6 +34,7 @@ export interface Vendor {
 export interface Machine {
   id: string;
   vendor_id: string | null;
+  category: 'vehicle' | 'equipment';
   name: string;
   type: string;
   plate_number: string;

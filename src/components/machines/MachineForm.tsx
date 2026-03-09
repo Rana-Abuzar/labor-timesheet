@@ -103,7 +103,7 @@ export function MachineForm({ initial, onSubmit, submitLabel = 'Save' }: Props) 
   const toast = useToast();
   const { vendors } = useVendors();
   const [form, setForm] = useState<FormData>({
-    vendor_id: null, name: '', type: '', plate_number: '', model: '',
+    vendor_id: null, category: 'vehicle', name: '', type: '', plate_number: '', model: '',
     year: null, daily_rate: null, status: 'available', notes: '', is_active: true,
     contact_person: null, contact_number: null,
     operator_name: null, operator_id: null,
@@ -141,6 +141,16 @@ export function MachineForm({ initial, onSubmit, submitLabel = 'Save' }: Props) 
           className={inputClass} style={inputStyle} onFocus={focus} onBlur={blur}>
           <option value="">— No vendor —</option>
           {vendors.map(v => <option key={v.id} value={v.id}>{v.name}</option>)}
+        </select>
+      </div>
+
+      {/* Category */}
+      <div>
+        <label className="block text-sm mb-1" style={{ color: 'var(--text-muted)' }}>Category <span style={{ color: '#e8762b' }}>*</span></label>
+        <select value={form.category} onChange={e => set('category', e.target.value as 'vehicle' | 'equipment')}
+          className={inputClass} style={inputStyle} onFocus={focus} onBlur={blur}>
+          <option value="vehicle">Vehicle</option>
+          <option value="equipment">Equipment</option>
         </select>
       </div>
 

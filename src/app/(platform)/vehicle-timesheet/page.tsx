@@ -177,7 +177,7 @@ function VehicleTimesheetPageInner() {
             style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', border: '1px solid var(--border)', minWidth: 180 }}
           >
             <option value="">Select Vehicle</option>
-            {machines.map(m => (
+            {machines.filter(m => m.category === 'vehicle').map(m => (
               <option key={m.id} value={m.id}>{m.name} ({m.plate_number || m.type})</option>
             ))}
           </select>

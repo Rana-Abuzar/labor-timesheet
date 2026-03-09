@@ -16,8 +16,8 @@ export default function VehicleTimesheetHistoryPage() {
   const [filter, setFilter] = useState<'All' | 'approved' | 'draft'>('All');
   const [monthFilter, setMonthFilter] = useState('All');
 
-  const machineIds = new Set(machines.map(m => m.id));
-  const vehicleTimesheets = timesheets.filter(ts => ts.laborer_id && machineIds.has(ts.laborer_id));
+  const vehicleMachineIds = new Set(machines.filter(m => m.category === 'vehicle').map(m => m.id));
+  const vehicleTimesheets = timesheets.filter(ts => ts.laborer_id && vehicleMachineIds.has(ts.laborer_id));
 
   const monthOptions = Array.from(
     new Set(vehicleTimesheets.map(ts => `${MONTHS[ts.month]} ${ts.year}`))

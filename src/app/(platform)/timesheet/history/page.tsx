@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTimesheetHistory, approveTimesheet } from '@/hooks/useTimesheetHistory';
+import { useLaborers } from '@/hooks/useLaborers';
 import { PageSpinner } from '@/components/ui/Spinner';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { timesheetStatusBadge } from '@/components/ui/Badge';
@@ -12,16 +13,23 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 export default function TimesheetHistoryPage() {
   const { timesheets, loading, refetch } = useTimesheetHistory();
+  const { laborers } = useLaborers(false);
   const toast = useToast();
+
+  // Build lookup map and ID set for laborers only
+  const laborerMap = new Map(laborers.map(l => [l.id, l]));
+  const laborerIds = new Set(laborers.map(l => l.id));
   const [filter, setFilter] = useState<'All' | 'approved' | 'draft'>('All');
   const [monthFilter, setMonthFilter] = useState('All');
 
-  // Build unique month options from timesheets
+  // Only show labor timesheets (exclude machine timesheets)
+  const laborTimesheets = timesheets.filter(ts => !ts.laborer_id || laborerIds.has(ts.laborer_id));
+
   const monthOptions = Array.from(
-    new Set(timesheets.map(ts => `${MONTHS[ts.month]} ${ts.year}`))
+    new Set(laborTimesheets.map(ts => `${MONTHS[ts.month]} ${ts.year}`))
   );
 
-  const filtered = timesheets.filter(ts => {
+  const filtered = laborTimesheets.filter(ts => {
     const matchStatus = filter === 'All' || ts.status === filter;
     const matchMonth = monthFilter === 'All' || `${MONTHS[ts.month]} ${ts.year}` === monthFilter;
     return matchStatus && matchMonth;
@@ -102,7 +110,7 @@ export default function TimesheetHistoryPage() {
             </thead>
             <tbody>
               {filtered.map(ts => {
-                const laborerData = ts.laborer as any;
+                const laborerData = laborerMap.get(ts.laborer_id ?? '');
                 const dailyRate = laborerData?.daily_rate ?? 0;
                 const salary = dailyRate > 0 ? Math.round(dailyRate * (ts.total_actual / 10)) : 0;
                 return (
@@ -120,7 +128,7 @@ export default function TimesheetHistoryPage() {
                           fontSize: 10, fontWeight: 700, flexShrink: 0,
                           background: 'rgba(59,130,246,0.08)', color: 'var(--blue)',
                         }}>
-                          {(laborerData?.full_name ?? '—').split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase()}
+                          {(laborerData?.full_name ?? '—').split(' ').map((w: string) => w[0] ?? '').join('').slice(0, 2).toUpperCase()}
                         </div>
                         <Link href={`/timesheet/history/${ts.id}`} style={{
                           fontSize: '12.5px', fontWeight: 600, color: 'var(--text-secondary)',
@@ -134,7 +142,7 @@ export default function TimesheetHistoryPage() {
                       </div>
                     </td>
                     <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>
-                      {laborerData?.designation ?? ts.designation ?? '—'}
+                      {ts.designation || laborerData?.designation || '—'}
                     </td>
                     <td style={{ padding: '10px 13px', fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>
                       {ts.total_actual} hrs

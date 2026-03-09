@@ -15,6 +15,7 @@ export default function EquipmentPage() {
   const [filter, setFilter] = useState('All');
 
   const filtered = machines.filter(m => {
+    if (m.category !== 'equipment') return false;
     const matchSearch = m.name.toLowerCase().includes(search.toLowerCase()) ||
       m.type.toLowerCase().includes(search.toLowerCase()) ||
       (m.plate_number || '').toLowerCase().includes(search.toLowerCase());
