@@ -160,67 +160,72 @@ export default function ManualTimesheetsPage() {
             No timesheets found. Use the buttons above to create one.
           </div>
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ background: 'var(--thead-bg)' }}>
-                {['Type', 'Name', 'Month', 'Total Hours', 'Status', 'Actions'].map(h => (
-                  <th key={h} style={{ padding: '10px 13px', fontSize: '10.5px', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'left', letterSpacing: '0.5px', textTransform: 'uppercase' }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map(ts => {
-                const type = resolveType(ts);
-                const name = resolveName(ts, type);
-                const colors = TYPE_COLORS[type];
-                return (
-                  <tr key={ts.id}
-                    style={{ borderBottom: '1px solid #f4f1ed', transition: 'background 0.1s' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--row-hover)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
-                  >
-                    <td style={{ padding: '10px 13px' }}>
-                      <span style={{
-                        display: 'inline-block', padding: '2px 9px', borderRadius: 6,
-                        fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
-                        background: colors.bg, color: colors.color,
-                      }}>{type}</span>
-                    </td>
-                    <td style={{ padding: '10px 13px', fontSize: '12.5px', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                      {name}
-                    </td>
-                    <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>
-                      {MONTHS[ts.month]} {ts.year}
-                    </td>
-                    <td style={{ padding: '10px 13px', fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>
-                      {ts.total_actual} hrs
-                    </td>
-                    <td style={{ padding: '10px 13px' }}>{timesheetStatusBadge(ts.status)}</td>
-                    <td style={{ padding: '10px 13px' }}>
-                      <div className="flex items-center gap-2">
-                        <Link href={editLink(ts, type)} style={{
-                          fontSize: 11, fontWeight: 600, padding: '4px 9px', borderRadius: 6,
-                          border: '1px solid var(--border2)', background: 'var(--bg-card)',
-                          color: 'var(--text-light)', textDecoration: 'none',
-                        }}>EDIT</Link>
-                        <button onClick={async () => {
-                          if (ts.status === 'approved') return;
-                          await approveTimesheet(ts.id);
-                          refetch(); toast.success('Timesheet approved');
-                        }} style={{
-                          fontSize: 11, fontWeight: 600, padding: '4px 9px', borderRadius: 6,
-                          border: 'none', cursor: ts.status === 'approved' ? 'default' : 'pointer',
-                          background: ts.status === 'approved' ? '#d1d5db' : 'var(--orange)',
-                          color: ts.status === 'approved' ? '#6b7280' : '#fff',
-                          opacity: ts.status === 'approved' ? 0.7 : 1,
-                        }}>{ts.status === 'approved' ? 'SAVED' : 'SAVE'}</button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div style={{ maxHeight: 480, overflowY: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+                <tr style={{ background: 'var(--thead-bg)' }}>
+                  {['Type', 'Name', 'ID / Reg No', 'Month', 'Total Hours', 'Status', 'Actions'].map(h => (
+                    <th key={h} style={{ padding: '10px 13px', fontSize: '10.5px', fontWeight: 600, color: 'var(--text-muted)', textAlign: 'left', letterSpacing: '0.5px', textTransform: 'uppercase', background: 'var(--thead-bg)' }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map(ts => {
+                  const type = resolveType(ts);
+                  const name = resolveName(ts, type);
+                  const colors = TYPE_COLORS[type];
+                  return (
+                    <tr key={ts.id}
+                      style={{ borderBottom: '1px solid #f4f1ed', transition: 'background 0.1s' }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--row-hover)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+                    >
+                      <td style={{ padding: '10px 13px' }}>
+                        <span style={{
+                          display: 'inline-block', padding: '2px 9px', borderRadius: 6,
+                          fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
+                          background: colors.bg, color: colors.color,
+                        }}>{type}</span>
+                      </td>
+                      <td style={{ padding: '10px 13px', fontSize: '12.5px', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                        {name}
+                      </td>
+                      <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)', fontFamily: 'monospace', fontWeight: 600 }}>
+                        {ts.designation || '—'}
+                      </td>
+                      <td style={{ padding: '10px 13px', fontSize: 12, color: 'var(--text-light)' }}>
+                        {MONTHS[ts.month]} {ts.year}
+                      </td>
+                      <td style={{ padding: '10px 13px', fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {ts.total_actual} hrs
+                      </td>
+                      <td style={{ padding: '10px 13px' }}>{timesheetStatusBadge(ts.status)}</td>
+                      <td style={{ padding: '10px 13px' }}>
+                        <div className="flex items-center gap-2">
+                          <Link href={editLink(ts, type)} style={{
+                            fontSize: 11, fontWeight: 600, padding: '4px 9px', borderRadius: 6,
+                            border: '1px solid var(--border2)', background: 'var(--bg-card)',
+                            color: 'var(--text-light)', textDecoration: 'none',
+                          }}>EDIT</Link>
+                          <button onClick={async () => {
+                            if (ts.status === 'approved') return;
+                            await approveTimesheet(ts.id);
+                            refetch(); toast.success('Timesheet approved');
+                          }} style={{
+                            fontSize: 11, fontWeight: 600, padding: '4px 9px', borderRadius: 6,
+                            border: 'none', cursor: ts.status === 'approved' ? 'default' : 'pointer',
+                            background: ts.status === 'approved' ? '#d1d5db' : 'var(--orange)',
+                            color: ts.status === 'approved' ? '#6b7280' : '#fff',
+                            opacity: ts.status === 'approved' ? 0.7 : 1,
+                          }}>{ts.status === 'approved' ? 'SAVED' : 'SAVE'}</button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
