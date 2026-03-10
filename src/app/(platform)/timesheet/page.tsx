@@ -54,7 +54,7 @@ function TimesheetPageInner() {
         timesheet.loadEntries(entries, {
           month: ts.month,
           year: ts.year,
-          laborName: (ts as any).laborer?.full_name ?? '',
+          laborName: ts.labor_name ?? '',
           projectName: ts.project_name ?? '',
           supplierName: '',
           siteEngineerName: ts.site_engineer_name ?? '',

@@ -55,7 +55,7 @@ function EquipmentTimesheetPageInner() {
         timesheet.loadEntries(entries, {
           month: ts.month,
           year: ts.year,
-          laborName: machine ? `${machine.name}# ${machine.plate_number ?? ''}` : (ts.designation ?? ''),
+          laborName: machine ? `${machine.name}# ${machine.plate_number ?? ''}` : (ts.labor_name ?? ts.designation ?? ''),
           projectName: ts.project_name ?? '',
           supplierName: ts.supplier_name ?? '',
           siteEngineerName: ts.site_engineer_name ?? '',

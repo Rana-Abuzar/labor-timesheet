@@ -56,7 +56,7 @@ function VehicleTimesheetPageInner() {
         timesheet.loadEntries(entries, {
           month: ts.month,
           year: ts.year,
-          laborName: machine?.operator_name ?? '',
+          laborName: machine?.operator_name ?? ts.labor_name ?? '',
           projectName: ts.project_name ?? '',
           supplierName: ts.supplier_name ?? '',
           siteEngineerName: ts.site_engineer_name ?? '',
