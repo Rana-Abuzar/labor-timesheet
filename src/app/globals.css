@@ -107,7 +107,6 @@ button, input, select, textarea {
     margin: 0;
     width: 210mm;
     height: 297mm;
-    overflow: hidden;
   }
 
   body > *, body > * > *, body > * > * > * {

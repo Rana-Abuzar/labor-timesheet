@@ -72,14 +72,14 @@ export default function WorkTable({
           return (
             <tr key={entry.day}>
               <td className={`border border-black p-0.5 text-left pl-1 text-[12px] whitespace-nowrap align-middle ${isFridayRow ? 'bg-header-bg' : ''}`}>
-                <span className="inline-block h-[14px] leading-[14px]">{formatDate(year, month, entry.day)}</span>
+                <span className="inline-block h-[13px] leading-[13px]">{formatDate(year, month, entry.day)}</span>
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
                 <input
                   type="text"
                   value={entry.timeIn}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeIn', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -87,7 +87,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.timeOutLunch}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeOutLunch', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="p-0.5 text-center text-[12px] align-middle" style={{ border: 'none' }}>
@@ -95,7 +95,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.lunchBreak}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'lunchBreak', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -103,7 +103,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.timeIn2}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeIn2', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -111,7 +111,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.timeOut2}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'timeOut2', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -119,7 +119,7 @@ export default function WorkTable({
                   type="number"
                   value={entry.totalDuration || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'totalDuration', Number(e.target.value))}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -127,7 +127,7 @@ export default function WorkTable({
                   type="number"
                   value={entry.overTime || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'overTime', Number(e.target.value))}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -135,7 +135,7 @@ export default function WorkTable({
                   type="number"
                   value={entry.actualWorked || ''}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'actualWorked', Number(e.target.value))}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -143,7 +143,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.approverSig}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'approverSig', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
               <td className="border border-black p-0.5 text-center text-[12px] align-middle">
@@ -151,7 +151,7 @@ export default function WorkTable({
                   type="text"
                   value={entry.remarks}
                   onChange={(e) => onUpdateDayEntry(entry.day, 'remarks', e.target.value)}
-                  className="w-full outline-none text-center text-[12px] bg-transparent h-[14px] leading-[14px]"
+                  className="w-full outline-none text-center text-[12px] bg-transparent h-[13px] leading-[13px]"
                 />
               </td>
             </tr>
